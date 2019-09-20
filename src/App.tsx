@@ -1,22 +1,16 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import { Route, BrowserRouter as Router } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 
 const App: React.FC = () => (
   <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p />
-      <code>Wsh alors</code>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </header>
+    <Router>
+      <Route exact path="/" component={Home} />
+      <Route path="/login" component={Login} />
+      TODO : Layout
+    </Router>
   </div>
 );
 

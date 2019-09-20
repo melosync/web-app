@@ -24,10 +24,16 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
-    // 'prettier'
   ],
   rules: {
     "react/jsx-filename-extension": [0, { "extensions": [".js", ".jsx"] }], 
-    // "prettier/prettier": "error"
+  },
+  settings: {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    },
   },
 };
