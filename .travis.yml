@@ -1,0 +1,13 @@
+language: node_js
+
+node_js:
+  - "11.15.0"
+
+env:
+  - TEST_SUITE=lint
+
+install:
+  - npm install
+
+script:
+  - npm run $TEST_SUITE
