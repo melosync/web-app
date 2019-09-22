@@ -1,5 +1,5 @@
 {
-  "name": "web-app",
+  "name": "melosync-web-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,8 +7,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint --config .eslintrc.json 'sources/**.ts*'",
-    "lint:fix": "eslint --config .eslintrc.json --fix 'sources/**.ts*'"
+    "lint": "eslint --config .eslintrc.json 'src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint --config .eslintrc.json --fix 'src/**/*.{ts,tsx}'"
   },
   "browserslist": {
     "production": [
@@ -24,17 +24,27 @@
   },
   "dependencies": {
     "@types/node": "12.7.5",
+    "@types/node-sass": "^4.11.0",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
+    "@types/react-router-dom": "^4.3.5",
+    "node-sass": "^4.12.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
-    "react-scripts": "3.1.1",
+    "react-router-dom": "^5.0.1",
+    "react-scripts": "3.1.2",
     "typescript": "3.6.3"
   },
   "devDependencies": {
     "@types/jest": "24.0.18",
+    "@typescript-eslint/eslint-plugin": "^2.3.0",
+    "@typescript-eslint/parser": "^2.3.0",
     "eslint": "^6.4.0",
-    "eslint-config-airbnb-typescript-prettier": "^1.4.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-config-react": "^1.1.7",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
     "prettier": "^1.18.2"
   }
 }
