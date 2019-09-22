@@ -18,6 +18,8 @@
     "jest": true
   },
   "rules": {
+    "arrow-body-style": "off",
+    "arrow-parens": "off",
     "linebreak-style": "off",
     "import/order": ["error", {
       "newlines-between": "always"
@@ -25,6 +27,7 @@
     "no-console": ["error", {
       "allow": ["info", "warn", "error"]
     }],
+    "object-curly-newline": "off",
     "quotes": ["error", "double", {
       "avoidEscape": true
     }],
