@@ -1,0 +1,24 @@
+@import "../../assets/scss/colors.scss";
+
+.AppBar {
+  background-color: $color-primary !important; // `!important is needed because of material-ui`
+}
+
+.Toolbar {
+  color: white;
+}
+
+.LinkContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.MelosyncIcon {
+  height: 2.5em;
+}
+
+.MelosyncTitle {
+  font-size: 1.5em;
+  color: white;
+}

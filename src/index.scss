@@ -1,8 +1,19 @@
 @import "./assets/scss/reset.scss";
 
+html {
+  height: 100%;
+}
+
 body {
+  min-height: 100%;
+  position: relative;
   font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
 }

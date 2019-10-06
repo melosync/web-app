@@ -1,15 +1,17 @@
 import React from "react";
-import { Route, BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 
 const App: React.FC = () => (
   <div className="App">
     <Router>
-      <Route exact path="/" component={Home} />
+      <Navbar />
+
+      <Route path="/" exact component={Home} />
       <Route path="/login" component={Login} />
-      TODO : Layout
     </Router>
   </div>
 );
