@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 
-import MelosyncIcon from "../icons/Melosync/Melosync";
+import MelosyncIcon from "../icons/Melosync";
 
 import styles from "./Navbar.module.scss";
 
