@@ -33,7 +33,10 @@
     }],
     "react/jsx-filename-extension": [1, {
       "extensions": [".tsx", ".jsx"]
-    }]
+    }],
+    "react/prop-types": "off",
+    "semi": "off",
+    "@typescript-eslint/semi": ["error"]
   },
   "settings": {
     "react": {

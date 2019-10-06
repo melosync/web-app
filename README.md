@@ -8,58 +8,76 @@
 
 <!-- toc -->
 
-- [Quickstart (with Docker)](#quickstart-with-docker)
+- [Quickstart](#quickstart)
   * [Prerequisites](#prerequisites)
   * [Up and running](#up-and-running)
   * [Other commands](#other-commands)
     + [Shell access](#shell-access)
-- [Quickstart (without Docker)](#quickstart-without-docker)
 - [Deployment](#deployment)
+  * [Build](#build)
 
 <!-- tocstop -->
 
-## Quickstart (with Docker)
-
-We recommend using docker and docker-compose to make the setup easier.
+## Quickstart
 
 ### Prerequisites
 
-- `docker` and `docker-compose`: see [https://docs.docker.com/install/overview/](https://docs.docker.com/install/overview/)
+- `Node` version 11 with `yarn`
+- `Docker`
 
 ### Up and running
 
-To start the local development server, run the following:
+First of all, install the project dependencies:
 
 ```sh
-docker-compose up web
+yarn install
 ```
 
-The server will be started and listen on your local port `3000`. You will be able to access it throught [http://localhost:3000/](http://localhost:3000/).
-
-To stop all running containers, run:
+Then, start the development server using:
 
 ```sh
-docker-compose down
+yarn start
 ```
+
+The server will listen on your local port `3000`. You will now be able to access it throught [http://localhost:3000/](http://localhost:3000/).
 
 ### Other commands
 
 #### Shell access
 
-To start a shell inside the container, run the following:
+We provide a `Docker` image that should be used in all management operations.
+This image is considered the default environment specification.
+
+To start a shell in this environment, run the following:
 
 ```sh
 docker-compose run --rm web sh
 ```
 
-You can then run commands like `npm install ...` from the container.
+You can then run commands like `yarn add ...` from the container.
 
 > The `--rm` option is used to remove the container after its execution and not have mulitple existing instances
 
-## Quickstart (without Docker)
-
-// TODO
+> Most of the commands described in this file should be run using this shell access.
 
 ## Deployment
 
-// TODO
+### Build
+
+To build a production package, run the following:
+
+```sh
+# Remove the previous build
+rm -rf build
+
+# Create a new build
+yarn run build
+```
+
+You can inspect that the build is correct localy using:
+
+```sh
+npx serve -s build
+```
+
+And then access the built image from [http://localhost:5000/](http://localhost:5000/).
