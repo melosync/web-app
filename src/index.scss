@@ -1,5 +1,5 @@
 @import "./assets/scss/reset.scss";
-
+@import "~normalize.css";
 html {
   height: 100%;
 }
@@ -17,3 +17,6 @@ a {
   color: inherit;
   text-decoration: inherit;
 }
+
+
+ html, body, #root, .App { min-height: 100%}
