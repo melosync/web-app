@@ -1,35 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import { ThemeProvider } from "@material-ui/styles";
+import { CssBaseline } from "@material-ui/core";
 
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-
-import { createMuiTheme } from "@material-ui/core/styles";
-import amber from "@material-ui/core/colors/amber";
-import { ThemeProvider } from "@material-ui/styles";
-import { CssBaseline } from "@material-ui/core";
+import Register from "./pages/Register";
+import theme from "./theme";
+import UserProvider from "./store/user";
 
 const App: React.FC = () => {
-  let [theme_type, set_theme_type] = useState("dark");
-  window.test = set_theme_type as any;
-
-  const theme = createMuiTheme({
-    palette: {
-      primary: amber,
-      type: theme_type as any,
-    },
-  });
   return (
-    <div className="App">
+    <div className="parent">
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Router>
-          <Navbar />
-
-          <Route path="/" exact component={Home} />
-          <Route path="/login" component={Login} />
-        </Router>
+        <UserProvider>
+          <CssBaseline />
+          <Router>
+            <Navbar />
+            <div className="App">
+              <Route path="/" exact component={Home} />
+              <Route path="/login" component={Login} />
+              <Route path="/register" component={Register} />
+            </div>
+          </Router>
+        </UserProvider>
       </ThemeProvider>
     </div>
   );

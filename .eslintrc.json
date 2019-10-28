@@ -9,31 +9,54 @@
     "plugin:import/warnings",
     "plugin:import/typescript",
     "airbnb",
+    "prettier",
     "airbnb/hooks"
   ],
-  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "plugins": ["react", "@typescript-eslint", "prettier", "react-hooks"],
   "env": {
     "browser": true,
     "jasmine": true,
     "jest": true
   },
   "rules": {
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "arrow-body-style": "off",
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      {
+        "allowExpressions": true
+      }
+    ],
     "arrow-parens": "off",
     "linebreak-style": "off",
-    "import/order": ["error", {
-      "newlines-between": "always"
-    }],
-    "no-console": ["error", {
-      "allow": ["info", "warn", "error"]
-    }],
+    "@typescript-eslint/no-explicit-any": "off",
+    "import/order": [
+      "error",
+      {
+        "newlines-between": "always"
+      }
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": ["info", "warn", "error"]
+      }
+    ],
     "object-curly-newline": "off",
-    "quotes": ["error", "double", {
-      "avoidEscape": true
-    }],
-    "react/jsx-filename-extension": [1, {
-      "extensions": [".tsx", ".jsx"]
-    }],
+    "quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".tsx", ".jsx"]
+      }
+    ],
     "react/prop-types": "off",
     "semi": "off",
     "@typescript-eslint/semi": ["error"]

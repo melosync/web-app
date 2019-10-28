@@ -1,11 +1,6 @@
 @import "./assets/scss/reset.scss";
 @import "~normalize.css";
-html {
-  height: 100%;
-}
-
 body {
-  min-height: 100%;
   position: relative;
   font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
@@ -18,5 +13,24 @@ a {
   text-decoration: inherit;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
 
- html, body, #root, .App { min-height: 100%}
+.parent {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 9fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.Appbar {
+  grid-row: 1;
+}
+.App {
+  grid-row: 2 8;
+}

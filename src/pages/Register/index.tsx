@@ -7,13 +7,13 @@ import {
   Button,
   CircularProgress,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
 
 import { UserContext } from "../../store/user";
 import AuthService from "../../services/Auth";
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
   const [loading, setloading] = useState(false);
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -25,6 +25,7 @@ const Login: React.FC = () => {
     e.preventDefault();
     setloading(true);
     try {
+      await AuthService.Register(name, password, email);
       const newUser = await AuthService.Login(password, email);
       update(newUser);
       localStorage.setItem("MELOSYNC_USER", JSON.stringify(newUser));
@@ -46,8 +47,17 @@ const Login: React.FC = () => {
     >
       <Card>
         <CardContent>
-          <h1 style={{ textAlign: "center" }}>Login</h1>
+          <h1 style={{ textAlign: "center" }}>Register</h1>
           <form onSubmit={onFormSubmit}>
+            <TextField
+              label="Name"
+              fullWidth
+              value={name}
+              onChange={e => setName(e.target.value)}
+              type="text"
+              margin="normal"
+              required
+            />
             <TextField
               label="Email"
               fullWidth
@@ -78,7 +88,7 @@ const Login: React.FC = () => {
                 type="submit"
                 disabled={loading}
               >
-                Login
+                Register
               </Button>
               {loading && (
                 <CircularProgress
@@ -92,9 +102,6 @@ const Login: React.FC = () => {
                   }}
                 />
               )}
-              <Link to="/register" style={{ width: "100%" }}>
-                <Button style={{ width: "100%" }}>Or register</Button>
-              </Link>
             </div>
           </form>
         </CardContent>
@@ -103,4 +110,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Register;
