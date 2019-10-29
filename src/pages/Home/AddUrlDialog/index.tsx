@@ -8,7 +8,8 @@ import {
 } from "@material-ui/core";
 
 import { MusicItem } from "../../../types/MusicItem";
-import getIdFromUrl from "../../../helpers/getIdFromUrl";
+import YoutubeHelper from "../../../helpers/YoutubeHelper";
+import "./index.scss";
 
 type AddUrlDialogProps = {
   youtubePlayer: any;
@@ -25,14 +26,18 @@ const AddUrlDialog: React.FC<AddUrlDialogProps> = ({
   setOpen,
   open,
 }) => {
-  const [newUrl, setnewUrl] = useState("");
+  const [newUrl, setNewUrl] = useState("");
 
-  function AddUrlClicked(e: React.SyntheticEvent<any, Event>): void {
+  const addUrlClicked = (e: React.SyntheticEvent<any, Event>): void => {
     e.preventDefault();
-    if (newUrl.length <= 0) return;
-    const res = getIdFromUrl(newUrl);
-    if (res === null) return;
-    setnewUrl("");
+    if (newUrl.length <= 0) {
+      return;
+    }
+    const res = YoutubeHelper.getIdFromUrl(newUrl);
+    if (res === null) {
+      return;
+    }
+    setNewUrl("");
     if (
       playlist.length === 0 &&
       youtubePlayer.getCurrentTime() === youtubePlayer.getDuration()
@@ -42,7 +47,7 @@ const AddUrlDialog: React.FC<AddUrlDialogProps> = ({
       playlist.push({ url: newUrl, id: res });
       setPlaylist(playlist);
     }
-  }
+  };
   return (
     <Dialog
       onClose={() => setOpen(false)}
@@ -50,9 +55,11 @@ const AddUrlDialog: React.FC<AddUrlDialogProps> = ({
       open={open}
       fullWidth
     >
-      <Typography variant="h4" component="h4" style={{ margin: "20px" }}>
-        Add Music
-      </Typography>
+      <div className="AddMusic">
+        <Typography variant="h4" component="h4">
+          Add Music
+        </Typography>
+      </div>
       <DialogContent style={{ padding: "25px" }}>
         <form>
           <TextField
@@ -63,7 +70,7 @@ const AddUrlDialog: React.FC<AddUrlDialogProps> = ({
             label="Url"
             value={newUrl}
             onChange={e => {
-              setnewUrl(e.target.value);
+              setNewUrl(e.target.value);
             }}
           />
           <Button
@@ -71,7 +78,7 @@ const AddUrlDialog: React.FC<AddUrlDialogProps> = ({
             size="large"
             type="submit"
             color="primary"
-            onClick={AddUrlClicked}
+            onClick={addUrlClicked}
             style={{ marginTop: "15px" }}
           >
             Add

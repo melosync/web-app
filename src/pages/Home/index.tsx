@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-import { Container, Divider, Typography, Fab } from "@material-ui/core";
 import YouTube from "react-youtube";
-import "./index.scss";
-import AddIcon from "@material-ui/icons/Add";
+import Container from "@material-ui/core/Container";
+import Divider from "@material-ui/core/Divider";
+import Typography from "@material-ui/core/Typography";
+import Fab from "@material-ui/core/Fab";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import AddIcon from "@material-ui/icons/Add";
 
 import { MusicItem } from "../../types/MusicItem";
 
+import "./index.scss";
 import AddUrlDialog from "./AddUrlDialog";
 
 const opts = {
@@ -19,7 +22,7 @@ const opts = {
 
 const Home: React.FC = () => {
   const [youtubePlayer, setyoutubePlayer] = useState();
-  const [AddUrlDialogopen, setAddUrlDialogOpen] = useState(false);
+  const [addUrlDialogopen, setAddUrlDialogOpen] = useState(false);
 
   const [current, setcurrent] = useState<MusicItem>({
     id: "PJ_zomNMK_s",
@@ -35,7 +38,7 @@ const Home: React.FC = () => {
       playlist.splice(0, 1);
       setPlaylist(playlist);
       setcurrent(next);
-      event.target.loadVideoById((next as any).id);
+      event.target.loadVideoById(next.id);
     }
   };
 
@@ -45,7 +48,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <Container style={{ width: "100%", marginTop: "30px", height: "60vh" }}>
+    <Container className="HomeContainer">
       <YouTube
         videoId={current.id}
         className="yt-player"
@@ -67,8 +70,8 @@ const Home: React.FC = () => {
         </Fab>
       </div>
       <List>
-        {playlist.map(m => (
-          <div key={m.url}>
+        {playlist.map((m, idx) => (
+          <div key={`${m.url}${idx}`}>
             <ListItem>
               <ListItemText primary={m.url} secondary="Added by Guillaume" />
             </ListItem>
@@ -77,7 +80,7 @@ const Home: React.FC = () => {
         ))}
       </List>
       <AddUrlDialog
-        open={AddUrlDialogopen}
+        open={addUrlDialogopen}
         setOpen={setAddUrlDialogOpen}
         youtubePlayer={youtubePlayer}
         playlist={playlist}

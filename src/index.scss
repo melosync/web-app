@@ -1,4 +1,3 @@
-@import "./assets/scss/reset.scss";
 @import "~normalize.css";
 body {
   position: relative;
@@ -17,20 +16,4 @@ html,
 body,
 #root {
   height: 100%;
-}
-
-.parent {
-  height: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 9fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-}
-
-.Appbar {
-  grid-row: 1;
-}
-.App {
-  grid-row: 2 8;
 }

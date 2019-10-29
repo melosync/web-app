@@ -12,7 +12,7 @@ type Provider = any & {
   children?: React.ReactNode;
 };
 
-export default function createCtx<A>(defaultValue: A): Context<A> {
+export default function createCtx<TData>(defaultValue: TData): Context<TData> {
   type UpdateType = React.Dispatch<React.SetStateAction<typeof defaultValue>>;
   const defaultUpdate: UpdateType = () => defaultValue;
   const ctx = React.createContext({

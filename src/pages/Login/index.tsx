@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Container,
   TextField,
@@ -7,7 +8,6 @@ import {
   Button,
   CircularProgress,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
 
 import { UserContext } from "../../store/user";
 import AuthService from "../../services/Auth";
