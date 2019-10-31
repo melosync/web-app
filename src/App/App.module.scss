@@ -1,0 +1,12 @@
+.parent {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 9fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.App {
+  grid-row: 2 8;
+}

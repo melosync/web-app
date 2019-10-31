@@ -1,11 +1,5 @@
-@import "./assets/scss/reset.scss";
-
-html {
-  height: 100%;
-}
-
+@import "~normalize.css";
 body {
-  min-height: 100%;
   position: relative;
   font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
     "Droid Sans", "Helvetica Neue", sans-serif;
@@ -16,4 +10,10 @@ body {
 a {
   color: inherit;
   text-decoration: inherit;
+}
+
+html,
+body,
+#root {
+  height: 100%;
 }

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import {
   Container,
   TextField,
@@ -7,18 +6,18 @@ import {
   Card,
   Button,
   CircularProgress,
-  Box,
 } from "@material-ui/core";
 
 import { UserContext } from "../../store/user";
 import AuthService from "../../services/Auth";
 
-import Styles from "./Login.module.scss";
+import Styles from "./Register.module.scss";
 
 const LOADING_CIRCLE_SIZE = 24;
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
   const [loading, setLoading] = useState(false);
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -30,6 +29,7 @@ const Login: React.FC = () => {
     e.preventDefault();
     setLoading(true);
     try {
+      await AuthService.Register(name, password, email);
       const newUser = await AuthService.Login(password, email);
       update(newUser);
       localStorage.setItem("MELOSYNC_USER", JSON.stringify(newUser));
@@ -39,11 +39,20 @@ const Login: React.FC = () => {
     setLoading(false);
   };
   return (
-    <Container className={Styles.LoginContainer}>
+    <Container className={Styles.RegisterContainer}>
       <Card>
         <CardContent>
-          <h1 className={Styles.centeredText}>Login</h1>
+          <h1 className={Styles.centeredText}>Register</h1>
           <form onSubmit={onFormSubmit}>
+            <TextField
+              label="Name"
+              fullWidth
+              value={name}
+              onChange={e => setName(e.target.value)}
+              type="text"
+              margin="normal"
+              required
+            />
             <TextField
               label="Email"
               fullWidth
@@ -69,19 +78,14 @@ const Login: React.FC = () => {
                 type="submit"
                 disabled={loading}
               >
-                Login
+                Register
               </Button>
               {loading && (
                 <CircularProgress
-                  className={Styles.LoginLoader}
                   size={LOADING_CIRCLE_SIZE}
+                  className={Styles.Loader}
                 />
               )}
-              <Box width={1}>
-                <Link to="/register">
-                  <Button className={Styles.registerButton}>Or register</Button>
-                </Link>
-              </Box>
             </div>
           </form>
         </CardContent>
@@ -90,4 +94,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Register;

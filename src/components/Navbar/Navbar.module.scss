@@ -1,11 +1,13 @@
 @import "../../assets/scss/colors.scss";
 
 .AppBar {
-  background-color: $color-primary !important; // `!important is needed because of material-ui`
+  background-color: $app-bar-color !important; // `!important is needed because of material-ui`
 }
 
 .Toolbar {
   color: white;
+  display: flex;
+  justify-content: space-between;
 }
 
 .LinkContainer {
