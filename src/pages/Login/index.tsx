@@ -12,7 +12,10 @@ import {
 
 import { UserContext } from "../../store/user";
 import AuthService from "../../services/Auth";
-import "./index.scss";
+
+import Styles from "./Login.module.scss";
+
+const LOADING_CIRCLE_SIZE = 24;
 
 const Login: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -36,10 +39,10 @@ const Login: React.FC = () => {
     setLoading(false);
   };
   return (
-    <Container className="LoginContainer">
+    <Container className={Styles.LoginContainer}>
       <Card>
         <CardContent>
-          <h1 className="centered-text">Login</h1>
+          <h1 className={Styles.centeredText}>Login</h1>
           <form onSubmit={onFormSubmit}>
             <TextField
               label="Email"
@@ -59,7 +62,7 @@ const Login: React.FC = () => {
               margin="normal"
               required
             />
-            <div className="BottomFormContainer">
+            <div className={Styles.BottomFormContainer}>
               <Button
                 variant="contained"
                 color="primary"
@@ -69,11 +72,14 @@ const Login: React.FC = () => {
                 Login
               </Button>
               {loading && (
-                <CircularProgress className="LoginLoader" size={24} />
+                <CircularProgress
+                  className={Styles.LoginLoader}
+                  size={LOADING_CIRCLE_SIZE}
+                />
               )}
               <Box width={1}>
                 <Link to="/register">
-                  <Button className="register-button">Or register</Button>
+                  <Button className={Styles.registerButton}>Or register</Button>
                 </Link>
               </Box>
             </div>

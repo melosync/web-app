@@ -12,8 +12,8 @@ import AddIcon from "@material-ui/icons/Add";
 
 import { MusicItem } from "../../types/MusicItem";
 
-import "./index.scss";
 import AddUrlDialog from "./AddUrlDialog";
+import Styles from "./Home.module.scss";
 
 const opts = {
   playerVars: {
@@ -49,15 +49,15 @@ const Home: React.FC = () => {
   };
 
   return (
-    <Container className="HomeContainer">
+    <Container className={Styles.HomeContainer}>
       <YouTube
         videoId={current.id}
-        className="yt-player"
+        className={Styles.ytPlayer}
         opts={opts}
         onEnd={onMusicEnd}
         onReady={onReady}
       />
-      <div className="NextLabel">
+      <div className={Styles.NextLabel}>
         <Typography variant="h3" component="h3" gutterBottom>
           Next in playlist
         </Typography>

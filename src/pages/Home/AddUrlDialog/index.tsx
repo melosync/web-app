@@ -10,7 +10,8 @@ import {
 
 import { MusicItem } from "../../../types/MusicItem";
 import YoutubeHelper from "../../../helpers/YoutubeHelper";
-import "./index.scss";
+
+import Styles from "./AddUrlDialog.module.scss";
 
 type AddUrlDialogProps = {
   youtubePlayer: any;
@@ -56,7 +57,7 @@ const AddUrlDialog: React.FC<AddUrlDialogProps> = ({
       open={open}
       fullWidth
     >
-      <div className="AddMusic">
+      <div className={Styles.AddMusic}>
         <Typography variant="h4" component="h4">
           Add Music
         </Typography>

@@ -10,7 +10,10 @@ import {
 
 import { UserContext } from "../../store/user";
 import AuthService from "../../services/Auth";
-import "./index.scss";
+
+import Styles from "./Register.module.scss";
+
+const LOADING_CIRCLE_SIZE = 24;
 
 const Register: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -36,10 +39,10 @@ const Register: React.FC = () => {
     setLoading(false);
   };
   return (
-    <Container className="RegisterContainer">
+    <Container className={Styles.RegisterContainer}>
       <Card>
         <CardContent>
-          <h1 className="centered-text">Register</h1>
+          <h1 className={Styles.centeredText}>Register</h1>
           <form onSubmit={onFormSubmit}>
             <TextField
               label="Name"
@@ -68,7 +71,7 @@ const Register: React.FC = () => {
               margin="normal"
               required
             />
-            <div className="BottomFormContainer">
+            <div className={Styles.BottomFormContainer}>
               <Button
                 variant="contained"
                 color="primary"
@@ -77,7 +80,12 @@ const Register: React.FC = () => {
               >
                 Register
               </Button>
-              {loading && <CircularProgress size={24} className="Loader" />}
+              {loading && (
+                <CircularProgress
+                  size={LOADING_CIRCLE_SIZE}
+                  className={Styles.Loader}
+                />
+              )}
             </div>
           </form>
         </CardContent>
