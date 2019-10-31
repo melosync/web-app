@@ -15,11 +15,11 @@ import Navbar from "../components/Navbar";
 import UserProvider from "../store/user";
 import theme from "../theme";
 
-import "./index.scss";
+import Styles from "./App.module.scss";
 
 const App: React.FC = () => {
   return (
-    <div className="parent">
+    <div className={Styles.parent}>
       <ThemeProvider theme={theme}>
         <UserProvider>
           <CssBaseline />

@@ -5,6 +5,7 @@ import {
   DialogContent,
   TextField,
   Button,
+  Box,
 } from "@material-ui/core";
 
 import { MusicItem } from "../../../types/MusicItem";
@@ -60,31 +61,34 @@ const AddUrlDialog: React.FC<AddUrlDialogProps> = ({
           Add Music
         </Typography>
       </div>
-      <DialogContent style={{ padding: "25px" }}>
-        <form>
-          <TextField
-            autoFocus
-            id="name"
-            type="text"
-            fullWidth
-            label="Url"
-            value={newUrl}
-            onChange={e => {
-              setNewUrl(e.target.value);
-            }}
-          />
-          <Button
-            variant="contained"
-            size="large"
-            type="submit"
-            color="primary"
-            onClick={addUrlClicked}
-            style={{ marginTop: "15px" }}
-          >
-            Add
-          </Button>
-        </form>
-      </DialogContent>
+      <Box p={2.5}>
+        <DialogContent>
+          <form>
+            <TextField
+              autoFocus
+              id="name"
+              type="text"
+              fullWidth
+              label="Url"
+              value={newUrl}
+              onChange={e => {
+                setNewUrl(e.target.value);
+              }}
+            />
+            <Box mt={1.5}>
+              <Button
+                variant="contained"
+                size="large"
+                type="submit"
+                color="primary"
+                onClick={addUrlClicked}
+              >
+                Add
+              </Button>
+            </Box>
+          </form>
+        </DialogContent>
+      </Box>
     </Dialog>
   );
 };

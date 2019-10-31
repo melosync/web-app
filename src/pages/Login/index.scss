@@ -1,0 +1,29 @@
+.LoginContainer {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+}
+
+.LoginLoader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -12px;
+}
+
+.BottomFormContainer {
+  position: relative;
+  display: grid;
+}
+
+.centered-text {
+  text-align: center;
+}
+
+.register-button {
+  width: 100%;
+}

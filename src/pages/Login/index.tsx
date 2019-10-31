@@ -7,13 +7,15 @@ import {
   Card,
   Button,
   CircularProgress,
+  Box,
 } from "@material-ui/core";
 
 import { UserContext } from "../../store/user";
 import AuthService from "../../services/Auth";
+import "./index.scss";
 
 const Login: React.FC = () => {
-  const [loading, setloading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -23,7 +25,7 @@ const Login: React.FC = () => {
     e: React.FormEvent<HTMLFormElement>
   ): Promise<any> => {
     e.preventDefault();
-    setloading(true);
+    setLoading(true);
     try {
       const newUser = await AuthService.Login(password, email);
       update(newUser);
@@ -31,22 +33,13 @@ const Login: React.FC = () => {
       window.location.replace("/");
       // eslint-disable-next-line no-empty
     } catch (error) {}
-    setloading(false);
+    setLoading(false);
   };
   return (
-    <Container
-      style={{
-        height: "100%",
-        display: "flex",
-        justifyContent: "center",
-        justifyItems: "center",
-        alignContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <Container className="LoginContainer">
       <Card>
         <CardContent>
-          <h1 style={{ textAlign: "center" }}>Login</h1>
+          <h1 className="centered-text">Login</h1>
           <form onSubmit={onFormSubmit}>
             <TextField
               label="Email"
@@ -66,12 +59,7 @@ const Login: React.FC = () => {
               margin="normal"
               required
             />
-            <div
-              style={{
-                position: "relative",
-                display: "grid",
-              }}
-            >
+            <div className="BottomFormContainer">
               <Button
                 variant="contained"
                 color="primary"
@@ -81,20 +69,13 @@ const Login: React.FC = () => {
                 Login
               </Button>
               {loading && (
-                <CircularProgress
-                  size={24}
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    marginTop: -12,
-                    marginLeft: -12,
-                  }}
-                />
+                <CircularProgress className="LoginLoader" size={24} />
               )}
-              <Link to="/register" style={{ width: "100%" }}>
-                <Button style={{ width: "100%" }}>Or register</Button>
-              </Link>
+              <Box width={1}>
+                <Link to="/register">
+                  <Button className="register-button">Or register</Button>
+                </Link>
+              </Box>
             </div>
           </form>
         </CardContent>

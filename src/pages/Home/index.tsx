@@ -5,6 +5,7 @@ import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import Fab from "@material-ui/core/Fab";
 import List from "@material-ui/core/List";
+import Box from "@material-ui/core/Box";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import AddIcon from "@material-ui/icons/Add";
@@ -21,10 +22,10 @@ const opts = {
 };
 
 const Home: React.FC = () => {
-  const [youtubePlayer, setyoutubePlayer] = useState();
-  const [addUrlDialogopen, setAddUrlDialogOpen] = useState(false);
+  const [youtubePlayer, setYoutubePlayer] = useState();
+  const [addUrlDialogOpen, setAddUrlDialogOpen] = useState(false);
 
-  const [current, setcurrent] = useState<MusicItem>({
+  const [current, setCurrent] = useState<MusicItem>({
     id: "PJ_zomNMK_s",
     url: "https://www.youtube.com/watch?v=PJ_zomNMK_s",
   });
@@ -37,13 +38,13 @@ const Home: React.FC = () => {
       const next = playlist[0];
       playlist.splice(0, 1);
       setPlaylist(playlist);
-      setcurrent(next);
+      setCurrent(next);
       event.target.loadVideoById(next.id);
     }
   };
 
   const onReady = (event: { target: any }): void => {
-    setyoutubePlayer(event.target);
+    setYoutubePlayer(event.target);
     event.target.pauseVideo();
   };
 
@@ -56,31 +57,36 @@ const Home: React.FC = () => {
         onEnd={onMusicEnd}
         onReady={onReady}
       />
-      <div style={{ margin: "20px", display: "flex" }}>
+      <div className="NextLabel">
         <Typography variant="h3" component="h3" gutterBottom>
           Next in playlist
         </Typography>
-        <Fab
-          color="primary"
-          aria-label="add"
-          style={{ marginLeft: "10px" }}
-          onClick={() => setAddUrlDialogOpen(true)}
-        >
-          <AddIcon />
-        </Fab>
+        <Box ml={1}>
+          <Fab
+            color="primary"
+            aria-label="add"
+            onClick={() => setAddUrlDialogOpen(true)}
+          >
+            <AddIcon />
+          </Fab>
+        </Box>
       </div>
       <List>
-        {playlist.map((m, idx) => (
-          <div key={`${m.url}${idx}`}>
+        {playlist.map((musicItem, idx) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <div key={`${musicItem.url}${idx}`}>
             <ListItem>
-              <ListItemText primary={m.url} secondary="Added by Guillaume" />
+              <ListItemText
+                primary={musicItem.url}
+                secondary="Added by Guillaume"
+              />
             </ListItem>
             <Divider />
           </div>
         ))}
       </List>
       <AddUrlDialog
-        open={addUrlDialogopen}
+        open={addUrlDialogOpen}
         setOpen={setAddUrlDialogOpen}
         youtubePlayer={youtubePlayer}
         playlist={playlist}

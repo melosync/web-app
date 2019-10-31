@@ -31,7 +31,6 @@
     "arrow-parens": "off",
     "linebreak-style": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "react/no-array-index-key": "off",
     "import/order": [
       "error",
       {

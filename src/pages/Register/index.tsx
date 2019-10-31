@@ -10,9 +10,10 @@ import {
 
 import { UserContext } from "../../store/user";
 import AuthService from "../../services/Auth";
+import "./index.scss";
 
 const Register: React.FC = () => {
-  const [loading, setloading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,7 +24,7 @@ const Register: React.FC = () => {
     e: React.FormEvent<HTMLFormElement>
   ): Promise<any> => {
     e.preventDefault();
-    setloading(true);
+    setLoading(true);
     try {
       await AuthService.Register(name, password, email);
       const newUser = await AuthService.Login(password, email);
@@ -32,22 +33,13 @@ const Register: React.FC = () => {
       window.location.replace("/");
       // eslint-disable-next-line no-empty
     } catch (error) {}
-    setloading(false);
+    setLoading(false);
   };
   return (
-    <Container
-      style={{
-        height: "100%",
-        display: "flex",
-        justifyContent: "center",
-        justifyItems: "center",
-        alignContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <Container className="RegisterContainer">
       <Card>
         <CardContent>
-          <h1 style={{ textAlign: "center" }}>Register</h1>
+          <h1 className="centered-text">Register</h1>
           <form onSubmit={onFormSubmit}>
             <TextField
               label="Name"
@@ -76,12 +68,7 @@ const Register: React.FC = () => {
               margin="normal"
               required
             />
-            <div
-              style={{
-                position: "relative",
-                display: "grid",
-              }}
-            >
+            <div className="BottomFormContainer">
               <Button
                 variant="contained"
                 color="primary"
@@ -90,18 +77,7 @@ const Register: React.FC = () => {
               >
                 Register
               </Button>
-              {loading && (
-                <CircularProgress
-                  size={24}
-                  style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    marginTop: -12,
-                    marginLeft: -12,
-                  }}
-                />
-              )}
+              {loading && <CircularProgress size={24} className="Loader" />}
             </div>
           </form>
         </CardContent>
