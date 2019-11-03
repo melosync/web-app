@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import YouTube from "react-youtube";
+import { useTranslation } from "react-i18next";
+
 import Container from "@material-ui/core/Container";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
@@ -22,6 +24,8 @@ const opts = {
 };
 
 const Home: React.FC = () => {
+  const { t } = useTranslation();
+
   const [youtubePlayer, setYoutubePlayer] = useState();
   const [addUrlDialogOpen, setAddUrlDialogOpen] = useState(false);
 
@@ -59,7 +63,7 @@ const Home: React.FC = () => {
       />
       <div className={Styles.NextLabel}>
         <Typography variant="h3" component="h3" gutterBottom>
-          Next in playlist
+          {t("test")}
         </Typography>
         <Box ml={1}>
           <Fab
