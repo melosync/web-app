@@ -7,8 +7,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint --config .eslintrc.json 'src/**/*.{ts,tsx}'",
-    "lint:fix": "eslint --config .eslintrc.json --fix 'src/**/*.{ts,tsx}'",
+    "lint": "eslint --config .eslintrc.json \"src/**/*.{ts,tsx}\"",
+    "lint:fix": "eslint --config .eslintrc.json --fix \"src/**/*.{ts,tsx}\"",
     "i18next:extract": "i18next 'src/**/*.{ts,tsx}' -c i18next-parser.config.js",
     "readme:update": "markdown-toc -i README.md"
   },

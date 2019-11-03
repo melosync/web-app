@@ -1,7 +1,3 @@
-import React, { useState } from "react";
-import YouTube from "react-youtube";
-import { useTranslation } from "react-i18next";
-
 import Container from "@material-ui/core/Container";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
@@ -11,6 +7,9 @@ import Box from "@material-ui/core/Box";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import AddIcon from "@material-ui/icons/Add";
+import React, { useState } from "react";
+import YouTube from "react-youtube";
+import { useTranslation } from "react-i18next";
 
 import { MusicItem } from "../../types/MusicItem";
 
