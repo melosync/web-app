@@ -25,3 +25,6 @@ yarn-error.log*
 # IDEs
 .vscode
 .idea
+
+# Translations
+translation_old.json
