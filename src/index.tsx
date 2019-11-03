@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import I18next from "i18next";
+import I18nextLanguageDetector from "i18next-browser-languagedetector";
+import I18nextXhr from "i18next-xhr-backend";
 import { initReactI18next } from "react-i18next";
 
 import App from "./App/Index";
@@ -10,6 +12,8 @@ import * as serviceWorker from "./serviceWorker";
 
 // Setup localization using i18next
 I18next
+  .use(I18nextLanguageDetector)
+  .use(I18nextXhr)
   .use(initReactI18next)
   .init({
     debug: process.env.NODE_ENV !== "production",
@@ -18,7 +22,7 @@ I18next
     load: "languageOnly",
 
     backend: {
-      loadPath: "/assets/locales/{{lng}}/{{ns}}.json",
+      loadPath: "/locales/{{lng}}/{{ns}}.json",
     },
 
     nsSeparator: false,
