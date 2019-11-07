@@ -9,6 +9,7 @@ import Box from "@material-ui/core/Box";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import AddIcon from "@material-ui/icons/Add";
+import { useTranslation } from "react-i18next";
 
 import { MusicItem } from "../../types/MusicItem";
 
@@ -22,6 +23,8 @@ const opts = {
 };
 
 const Room: React.FC = () => {
+  const { t } = useTranslation();
+
   const [youtubePlayer, setYoutubePlayer] = useState();
   const [addUrlDialogOpen, setAddUrlDialogOpen] = useState(false);
 
@@ -59,7 +62,7 @@ const Room: React.FC = () => {
       />
       <div className={Styles.NextLabel}>
         <Typography variant="h3" component="h3" gutterBottom>
-          Next in playlist
+          {t("test")}
         </Typography>
         <Box ml={1}>
           <Fab
