@@ -1,16 +1,55 @@
-import createCtx from "./createCtx";
+import { createSlice } from "redux-starter-kit";
 
-const userFromStorage = localStorage.getItem("MELOSYNC_USER");
-let user = null;
+import { Action } from "./Action";
 
+const MELOSYNC_USER = "MELOSYNC_USER";
+
+const userState = {
+  name: "",
+  token: "",
+  loggedIn: false,
+};
+
+const itemFromStorage = localStorage.getItem(MELOSYNC_USER);
 try {
-  if (userFromStorage !== null) {
-    user = JSON.parse(userFromStorage);
+  if (itemFromStorage !== null) {
+    const userFromStorage = JSON.parse(itemFromStorage);
+    if (userFromStorage && userFromStorage.name && userFromStorage.token) {
+      userState.name = userFromStorage.name;
+      userState.token = userFromStorage.token;
+      userState.loggedIn = true;
+    }
   }
-} catch (error) {
-  user = null;
-}
-const [ctx, UserProvider] = createCtx(user);
-export const UserContext = ctx;
+  // If the user is not set the userState will have the default value
+  // eslint-disable-next-line no-empty
+} catch (error) {}
 
-export default UserProvider;
+export type UserState = typeof userState;
+
+const userReducers = {
+  setUser: (state: UserState, action: Action<UserState>) => {
+    state.name = action.payload.name;
+    state.token = action.payload.token;
+    state.loggedIn = action.payload.loggedIn;
+    localStorage.setItem(
+      MELOSYNC_USER,
+      JSON.stringify({ name: state.name, token: state.token })
+    );
+  },
+  resetUser: (state: UserState) => {
+    state.name = "";
+    state.token = "";
+    state.loggedIn = false;
+    localStorage.removeItem(MELOSYNC_USER);
+  },
+};
+export type UserReducers = typeof userReducers;
+
+const userSlice = createSlice({
+  name: "user",
+  initialState: userState,
+  reducers: userReducers,
+});
+
+export default userSlice;
+export const { actions: userActions, reducer: userReducer } = userSlice;

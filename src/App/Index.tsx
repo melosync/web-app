@@ -7,14 +7,15 @@ import {
 } from "react-router-dom";
 import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import { Provider } from "react-redux";
 
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Room from "../pages/Room";
 import Navbar from "../components/Navbar";
-import UserProvider from "../store/user";
 import theme from "../theme";
+import store from "../store/store";
 
 import Styles from "./App.module.scss";
 
@@ -22,8 +23,8 @@ const App: React.FC = () => {
   return (
     <div className={Styles.parent}>
       <ThemeProvider theme={theme}>
-        <UserProvider>
-          <CssBaseline />
+        <CssBaseline />
+        <Provider store={store}>
           <Router>
             <Navbar />
             <div className="App">
@@ -36,7 +37,7 @@ const App: React.FC = () => {
               </Switch>
             </div>
           </Router>
-        </UserProvider>
+        </Provider>
       </ThemeProvider>
     </div>
   );
