@@ -5,19 +5,35 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
+import { connect } from "react-redux";
 
 import MelosyncIcon from "../icons/Melosync";
-import { UserContext } from "../../store/user";
+import { StateStore } from "../../store/store";
+import { userActions } from "../../store/user";
+import { TypeOfConnect } from "../../store/utils/TypeOfConnect";
 
 import styles from "./Navbar.module.scss";
 
-const Navbar: React.FC = () => {
-  const { state: user, update: updateUser } = React.useContext(UserContext);
+const withRedux = connect(
+  (state: StateStore) => {
+    return { user: state.user };
+  },
+  dispatch => {
+    return {
+      resetUser: () => {
+        dispatch(userActions.resetUser());
+      },
+    };
+  }
+);
+
+type Props = TypeOfConnect<typeof withRedux>;
+const Navbar: React.FC<Props> = props => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const { user, resetUser } = props;
 
   const handleLogout = (): void => {
-    updateUser(null);
-    localStorage.removeItem("MELOSYNC_USER");
+    resetUser();
     window.location.replace("/login");
     setAnchorEl(null);
   };
@@ -29,7 +45,7 @@ const Navbar: React.FC = () => {
           <MelosyncIcon className={styles.MelosyncIcon} />
           <h1 className={styles.MelosyncTitle}>Melosync</h1>
         </Link>
-        {user !== null ? (
+        {user.loggedIn ? (
           <span>
             <Button
               onClick={event => {
@@ -61,4 +77,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+export default withRedux(Navbar);

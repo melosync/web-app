@@ -43,6 +43,7 @@
         "allow": ["info", "warn", "error"]
       }
     ],
+    "no-param-reassign": "off",
     "object-curly-newline": "off",
     "quotes": [
       "error",
