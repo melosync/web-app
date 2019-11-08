@@ -2,13 +2,15 @@ import { createSlice } from "redux-starter-kit";
 
 import { Action } from "./Action";
 
+const MELOSYNC_USER = "MELOSYNC_USER";
+
 const userState = {
   name: "",
   token: "",
   loggedIn: false,
 };
 
-const itemFromStorage = localStorage.getItem("MELOSYNC_USER");
+const itemFromStorage = localStorage.getItem(MELOSYNC_USER);
 try {
   if (itemFromStorage !== null) {
     const userFromStorage = JSON.parse(itemFromStorage);
@@ -18,6 +20,7 @@ try {
       userState.loggedIn = true;
     }
   }
+  // If the user is not set the userState will have the default value
   // eslint-disable-next-line no-empty
 } catch (error) {}
 
@@ -29,7 +32,7 @@ const userReducers = {
     state.token = action.payload.token;
     state.loggedIn = action.payload.loggedIn;
     localStorage.setItem(
-      "MELOSYNC_USER",
+      MELOSYNC_USER,
       JSON.stringify({ name: state.name, token: state.token })
     );
   },
@@ -37,7 +40,7 @@ const userReducers = {
     state.name = "";
     state.token = "";
     state.loggedIn = false;
-    localStorage.removeItem("MELOSYNC_USER");
+    localStorage.removeItem(MELOSYNC_USER);
   },
 };
 export type UserReducers = typeof userReducers;

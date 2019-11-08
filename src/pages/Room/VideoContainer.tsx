@@ -15,7 +15,7 @@ import { MusicItem } from "../../types/MusicItem";
 import AddUrlDialog from "./AddUrlDialog";
 import Styles from "./Room.module.scss";
 
-const opts = {
+const YOUTUBE_PLAYER_OPTIONS = {
   playerVars: {
     autoplay: 1 as 1,
   },
@@ -41,7 +41,7 @@ const VideoContainer: React.FC = () => {
       playlist.splice(0, 1);
       setPlaylist(playlist);
       setCurrent(next);
-      event.target.loadVideoById(next.id);
+      event.target.loadVideoById(next.id); // TODO send socket Event
     }
   };
 
@@ -55,7 +55,7 @@ const VideoContainer: React.FC = () => {
       <YouTube
         videoId={current.id}
         className={Styles.ytPlayer}
-        opts={opts}
+        opts={YOUTUBE_PLAYER_OPTIONS}
         onEnd={onMusicEnd}
         onReady={onReady}
       />
