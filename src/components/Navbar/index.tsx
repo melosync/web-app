@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
@@ -28,14 +28,16 @@ const withRedux = connect(
 );
 
 type Props = TypeOfConnect<typeof withRedux>;
+
 const Navbar: React.FC<Props> = props => {
+  const history = useHistory();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const { user, resetUser } = props;
 
   const handleLogout = (): void => {
     resetUser();
-    window.location.replace("/login");
     setAnchorEl(null);
+    history.push("/login");
   };
 
   return (

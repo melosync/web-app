@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   Container,
   TextField,
@@ -33,6 +33,7 @@ const withRedux = connect(
 type Props = TypeOfConnect<typeof withRedux>;
 
 const Login: React.FC<Props> = props => {
+  const history = useHistory();
   const { setUser } = props;
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
@@ -46,10 +47,11 @@ const Login: React.FC<Props> = props => {
     try {
       const newUser = await AuthService.Login(password, email);
       setUser(newUser.name, newUser.token);
-      window.location.replace("/");
-      // eslint-disable-next-line no-empty
-    } catch (error) {}
-    setLoading(false);
+      setLoading(false);
+      history.push("/");
+    } catch (error) {
+      setLoading(false);
+    }
   };
   return (
     <Container className={Styles.LoginContainer}>

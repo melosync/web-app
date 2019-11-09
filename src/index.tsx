@@ -4,10 +4,12 @@ import I18nextXhr from "i18next-xhr-backend";
 import React from "react";
 import ReactDOM from "react-dom";
 import { initReactI18next } from "react-i18next";
+import { Provider } from "react-redux";
 
 import App from "./App/Index";
 import "./index.scss";
 import * as serviceWorker from "./serviceWorker";
+import store from "./store/store";
 
 // Setup localization using i18next
 I18next
@@ -41,7 +43,12 @@ I18next
     },
   })
   .then(() => {
-    ReactDOM.render(<App />, document.getElementById("root"));
+    ReactDOM.render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      document.getElementById("root")
+    );
   });
 
 // If you want your app to work offline and load faster, you can change
