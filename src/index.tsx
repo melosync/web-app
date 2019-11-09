@@ -6,10 +6,10 @@ import ReactDOM from "react-dom";
 import { initReactI18next } from "react-i18next";
 import { Provider } from "react-redux";
 
-import App from "./App/Index";
+import App from "./App/index_to_rename";
 import "./index.scss";
 import * as serviceWorker from "./serviceWorker";
-import store from "./store/store";
+import store from "./store";
 
 // Setup localization using i18next
 I18next
