@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   Container,
   TextField,
@@ -19,21 +19,21 @@ import Styles from "./Login.module.scss";
 
 const LOADING_CIRCLE_SIZE = 24;
 
-const withRedux = connect(
-  null,
-  dispatch => {
-    return {
-      setUser: (name: string, token: string) => {
-        dispatch(userActions.setUser({ name, token, loggedIn: true }));
-      },
-    };
-  }
-);
+const withRedux = connect(null, dispatch => {
+  return {
+    setUser: (name: string, token: string) => {
+      dispatch(userActions.setUser({ name, token, loggedIn: true }));
+    },
+  };
+});
 
 type Props = TypeOfConnect<typeof withRedux>;
 
 const Login: React.FC<Props> = props => {
   const { setUser } = props;
+
+  const history = useHistory();
+
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,10 +46,11 @@ const Login: React.FC<Props> = props => {
     try {
       const newUser = await AuthService.Login(password, email);
       setUser(newUser.name, newUser.token);
-      window.location.replace("/");
-      // eslint-disable-next-line no-empty
-    } catch (error) {}
-    setLoading(false);
+      setLoading(false);
+      history.push("/");
+    } catch (error) {
+      setLoading(false);
+    }
   };
   return (
     <Container className={Styles.LoginContainer}>

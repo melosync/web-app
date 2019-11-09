@@ -8,6 +8,7 @@ import {
   CircularProgress,
 } from "@material-ui/core";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import AuthService from "../../services/Auth";
 import { userActions } from "../../store/user";
@@ -17,20 +18,18 @@ import Styles from "./Register.module.scss";
 
 const LOADING_CIRCLE_SIZE = 24;
 
-const withRedux = connect(
-  null,
-  dispatch => {
-    return {
-      setUser: (name: string, token: string) => {
-        dispatch(userActions.setUser({ name, token, loggedIn: true }));
-      },
-    };
-  }
-);
+const withRedux = connect(null, dispatch => {
+  return {
+    setUser: (name: string, token: string) => {
+      dispatch(userActions.setUser({ name, token, loggedIn: true }));
+    },
+  };
+});
 
 type Props = TypeOfConnect<typeof withRedux>;
 
 const Register: React.FC<Props> = props => {
+  const history = useHistory();
   const { setUser } = props;
   const [loading, setLoading] = useState(false);
   const [name, setName] = useState("");
@@ -46,10 +45,11 @@ const Register: React.FC<Props> = props => {
       await AuthService.Register(name, password, email);
       const newUser = await AuthService.Login(password, email);
       setUser(newUser.name, newUser.token);
-      window.location.replace("/");
-      // eslint-disable-next-line no-empty
-    } catch (error) {}
-    setLoading(false);
+      setLoading(false);
+      history.push("/");
+    } catch (error) {
+      setLoading(false);
+    }
   };
   return (
     <Container className={Styles.RegisterContainer}>
