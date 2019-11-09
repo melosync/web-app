@@ -30,8 +30,10 @@ const withRedux = connect(null, dispatch => {
 type Props = TypeOfConnect<typeof withRedux>;
 
 const Login: React.FC<Props> = props => {
-  const history = useHistory();
   const { setUser } = props;
+
+  const history = useHistory();
+  
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
