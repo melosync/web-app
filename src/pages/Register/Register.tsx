@@ -49,20 +49,21 @@ const Register: React.FC<Props> = props => {
     try {
       // Register new User
       await api.auth.registerUser({
-        name: name,
-        email: email,
-        password: password,
+        name,
+        email,
+        password,
       });
 
       // Log in as the newly created User
       const res = await api.auth.loginUser({
-        email: email,
-        password: password,
+        email,
+        password,
       });
 
       // Save User in Store
       const { data } = res;
       setUser(data.user.id, data.user.name, data.token);
+      api.setToken(data.token);
 
       // Redirect to "/" as an authenticated User
       history.push("/");
@@ -70,7 +71,7 @@ const Register: React.FC<Props> = props => {
       setLoading(false);
 
       // TODO: Provide real feedback
-      console.log(error.response);
+      console.error(error.response);
     }
   };
 

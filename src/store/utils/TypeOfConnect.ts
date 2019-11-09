@@ -7,4 +7,5 @@ type TypeOfConnect<T> = T extends InferableComponentEnhancerWithProps<
   ? Props
   : never;
 
+// eslint-disable-next-line no-undef
 export default TypeOfConnect;

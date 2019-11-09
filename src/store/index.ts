@@ -1,11 +1,11 @@
 import { configureStore, combineReducers } from "redux-starter-kit";
 
+import { apiInfoReducer } from "./ApiInfoStore";
 import { userReducer } from "./UserStore";
-import { roomReducer } from "./room";
 
 const rootReducer = combineReducers({
+  apiInfo: apiInfoReducer,
   user: userReducer,
-  room: roomReducer,
 });
 
 const store = configureStore({

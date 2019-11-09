@@ -13,26 +13,25 @@ import Navbar from "../components/Navbar";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import Room from "../pages/Room";
+import RoomPage from "../pages/RoomPage";
 import Api, { ApiContext } from "../services/api";
 import { StateStore } from "../store";
 import TypeOfConnect from "../store/utils/TypeOfConnect";
 import theme from "../theme";
-import envOrThrow from "../utils/envOrThrow";
 
 import Styles from "./App.module.scss";
 
 const withRedux = connect((state: StateStore) => {
-  return { user: state.user };
+  return { user: state.user, apiInfo: state.apiInfo };
 });
 
 type Props = TypeOfConnect<typeof withRedux>;
 
 const App: React.FC<Props> = props => {
-  const { user } = props;
+  const { user, apiInfo } = props;
 
-  const apiEndpoint = envOrThrow("REACT_APP_API_ENDPOINT");
-  const api = useRef(new Api(apiEndpoint));
+  const token = user.loggedIn ? user.token : undefined;
+  const api = useRef(new Api(apiInfo.url, token));
 
   return (
     <ApiContext.Provider value={api.current}>
@@ -44,8 +43,8 @@ const App: React.FC<Props> = props => {
             <div className="App">
               <Switch>
                 <Route path="/" exact component={Home} />
-                <Route path="/room">
-                  {user.loggedIn ? <Room /> : <Redirect to="/login" />}
+                <Route path="/rooms/:uuid">
+                  {user.loggedIn ? <RoomPage /> : <Redirect to="/login" />}
                 </Route>
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />

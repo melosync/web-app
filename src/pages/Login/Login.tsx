@@ -6,7 +6,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import React, { useState } from "react";
-
 import { connect } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
@@ -50,13 +49,14 @@ const Login: React.FC<Props> = props => {
     try {
       // Login
       const res = await api.auth.loginUser({
-        email: email,
-        password: password,
+        email,
+        password,
       });
 
       // Save User in Store
       const { data } = res;
       setUser(data.user.id, data.user.name, data.token);
+      api.setToken(data.token);
 
       // Redirect to "/" as an authenticated User
       history.push("/");
@@ -64,7 +64,7 @@ const Login: React.FC<Props> = props => {
       setLoading(false);
 
       // TODO: Provide real feedback
-      console.log(error.response);
+      console.error(error.response);
     }
   };
 
