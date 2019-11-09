@@ -11,12 +11,13 @@ const Room: React.FC = () => {
     const socket = SocketIo(process.env.REACT_APP_API_ENDPOINT!);
 
     socket.on("connect", () => {
-      console.log("Connected");
+      // TODO: Connect for real
+      console.info("Connected");
       socket.emit("authenticate", { token: "token", roomUuid: "room" });
     });
 
     socket.on("exception", (errorMessage?: string) => {
-      const message = errorMessage ? errorMessage : "An error occurred";
+      const message = errorMessage || "An error occurred";
       console.error(`Socket: ${message}`);
     });
   });
