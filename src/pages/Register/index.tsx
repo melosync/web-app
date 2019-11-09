@@ -18,16 +18,13 @@ import Styles from "./Register.module.scss";
 
 const LOADING_CIRCLE_SIZE = 24;
 
-const withRedux = connect(
-  null,
-  dispatch => {
-    return {
-      setUser: (name: string, token: string) => {
-        dispatch(userActions.setUser({ name, token, loggedIn: true }));
-      },
-    };
-  }
-);
+const withRedux = connect(null, dispatch => {
+  return {
+    setUser: (name: string, token: string) => {
+      dispatch(userActions.setUser({ name, token, loggedIn: true }));
+    },
+  };
+});
 
 type Props = TypeOfConnect<typeof withRedux>;
 
