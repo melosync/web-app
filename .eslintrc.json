@@ -19,58 +19,36 @@
     "jest": true
   },
   "rules": {
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "arrow-body-style": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/explicit-function-return-type": [
       "error",
-      {
-        "allowExpressions": true
-      }
+      { "allowExpressions": true }
     ],
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/semi": ["error"],
+    "arrow-body-style": "off",
     "arrow-parens": "off",
+    "import/order": ["error", { "newlines-between": "always" }],
     "linebreak-style": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "import/order": [
-      "error",
-      {
-        "newlines-between": "always"
-      }
-    ],
-    "no-console": [
-      "error",
-      {
-        "allow": ["info", "warn", "error"]
-      }
-    ],
+    "no-console": ["error", { "allow": ["info", "warn", "error"] }],
     "no-param-reassign": "off",
     "object-curly-newline": "off",
-    "quotes": [
-      "error",
-      "double",
-      {
-        "avoidEscape": true
-      }
-    ],
-    "react/jsx-filename-extension": [
-      1,
-      {
-        "extensions": [".tsx", ".jsx"]
-      }
-    ],
+    "quotes": ["error", "double", { "avoidEscape": true }],
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }],
     "react/prop-types": "off",
-    "semi": "off",
-    "@typescript-eslint/semi": ["error"]
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
+    "semi": "off"
   },
   "settings": {
-    "react": {
-      "pragma": "React",
-      "version": "detect"
-    },
     "import/resolver": {
       "node": {
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
+    },
+    "react": {
+      "pragma": "React",
+      "version": "detect"
     }
   },
   "parser": "@typescript-eslint/parser"
