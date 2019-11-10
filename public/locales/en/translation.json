@@ -1,3 +1,4 @@
 {
-  "test": "Hey it works"
+  "playlistAddItem": "Add song",
+  "playlistNextItem": "Next song"
 }

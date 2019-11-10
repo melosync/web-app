@@ -1,9 +1,8 @@
 import Container from "@material-ui/core/Container";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import SocketIo from "socket.io-client";
-import { Button } from "@material-ui/core";
 
 import Api, { useApi } from "../../services/api";
 import { StateStore } from "../../store";
@@ -13,11 +12,11 @@ import RoomMember from "../../types/RoomMember";
 import RoomPlaylistItem from "../../types/RoomPlaylistItem";
 import YoutubeApiItem from "../../types/YoutubeApiItem";
 
+import ButtonBox from "./ButtonBox/ButtonBox";
 import MemberList from "./MemberList";
-import VideoContainer from "./VideoContainer";
-import Styles from "./RoomPage.module.scss";
 import PlaylistQueue from "./PlaylistQueue/PlaylistQueue";
-import SearchMusicButton from "./SearchMusicButton/SearchMusicButton";
+import Styles from "./RoomPage.module.scss";
+import VideoContainer from "./VideoContainer";
 
 const withRedux = connect((state: StateStore) => {
   return { user: state.user, apiInfo: state.apiInfo };
@@ -271,10 +270,10 @@ const RoomPage: React.FC<Props> = props => {
       )}
 
       {uuid && room && (
-        <div>
-          <SearchMusicButton onMusicSelected={onMusicSelected(api, uuid)} />
-          <Button onClick={nextMusic(api, room)}>Next</Button>
-        </div>
+        <ButtonBox
+          onNext={nextMusic(api, room)}
+          onSearchSelected={onMusicSelected(api, uuid)}
+        />
       )}
 
       {room && (

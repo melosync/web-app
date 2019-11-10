@@ -1,12 +1,10 @@
-import { Box, Fab } from "@material-ui/core";
-import AddIcon from "@material-ui/icons/Add";
+import { Button } from "@material-ui/core";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import Modal from "../../../components/Modal";
 import YoutubeSearch from "../../../components/YoutubeSearch";
 import YoutubeApiItem from "../../../types/YoutubeApiItem";
-
-import Styles from "./SearchMusicButton.module.scss";
 
 interface Props {
   onMusicSelected: (item: YoutubeApiItem) => void;
@@ -15,20 +13,20 @@ interface Props {
 const SearchMusicButton: React.FC<Props> = props => {
   const { onMusicSelected } = props;
 
+  const { t } = useTranslation();
+
   const [addUrlDialogOpen, setAddUrlDialogOpen] = useState(false);
+
   return (
     <div>
-      <div className={Styles.NextLabel}>
-        <Box ml={1}>
-          <Fab
-            color="primary"
-            aria-label="add"
-            onClick={() => setAddUrlDialogOpen(true)}
-          >
-            <AddIcon />
-          </Fab>
-        </Box>
-      </div>
+      <Button
+        color="primary"
+        variant="contained"
+        onClick={() => setAddUrlDialogOpen(true)}
+        style={{ width: "130px" }}
+      >
+        {t("playlistAddItem")}
+      </Button>
       <Modal
         title="Add Music"
         open={addUrlDialogOpen}

@@ -3,7 +3,7 @@ import I18nextLanguageDetector from "i18next-browser-languagedetector";
 import I18nextXhr from "i18next-xhr-backend";
 import React from "react";
 import ReactDOM from "react-dom";
-import { initReactI18next } from "react-i18next";
+import { initReactI18next, I18nextProvider } from "react-i18next";
 import { Provider } from "react-redux";
 
 import App from "./App/index_to_rename";
@@ -44,9 +44,11 @@ I18next
   })
   .then(() => {
     ReactDOM.render(
-      <Provider store={store}>
-        <App />
-      </Provider>,
+      <I18nextProvider i18n={I18next}>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </I18nextProvider>,
       document.getElementById("root")
     );
   });
