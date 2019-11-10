@@ -1,12 +1,12 @@
 import React from "react";
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import { useTranslation } from "react-i18next";
 
 import YoutubeApiItem from "../../../types/YoutubeApiItem";
 import SearchMusicButton from "../SearchMusicButton/SearchMusicButton";
-import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
 
 import Styles from "./ButtonBox.module.scss";
-import { useTranslation } from "react-i18next";
 
 interface Props {
   onNext: () => void;
