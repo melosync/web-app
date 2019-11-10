@@ -1,8 +1,8 @@
 import RoomPlaylistItem from "./RoomPlaylistItem";
-import RoomPlaylistCurrent from "./RoomPlaylistCurrent";
 
 export default interface RoomPlaylist {
-  current?: RoomPlaylistCurrent;
-  nextItems: RoomPlaylistItem[];
+  items: RoomPlaylistItem[];
   isPlaying: boolean;
+  playingSince: Date;
+  musicOffset: number;
 }
