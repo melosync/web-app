@@ -32,7 +32,12 @@ const SearchMusicButton: React.FC<Props> = props => {
         open={addUrlDialogOpen}
         setOpen={setAddUrlDialogOpen}
       >
-        <YoutubeSearch onSelect={onMusicSelected} />
+        <YoutubeSearch
+          onSelect={(item: any) => {
+            setAddUrlDialogOpen(false);
+            onMusicSelected(item);
+          }}
+        />
       </Modal>
     </div>
   );
