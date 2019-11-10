@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
-import store from "../store/store";
+import store from "../store";
 
-import App from "./Index";
+import App from "./index_to_rename";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");

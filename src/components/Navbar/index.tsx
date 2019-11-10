@@ -8,9 +8,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { connect } from "react-redux";
 
 import MelosyncIcon from "../icons/Melosync";
-import { StateStore } from "../../store/store";
-import { userActions } from "../../store/user";
-import { TypeOfConnect } from "../../store/utils/TypeOfConnect";
+import { StateStore } from "../../store";
+import { userActions } from "../../store/UserStore";
+import TypeOfConnect from "../../store/utils/TypeOfConnect";
 
 import styles from "./Navbar.module.scss";
 
