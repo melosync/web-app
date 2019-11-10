@@ -1,18 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import YouTube from "react-youtube";
-import Divider from "@material-ui/core/Divider";
-import Typography from "@material-ui/core/Typography";
-import Fab from "@material-ui/core/Fab";
-import List from "@material-ui/core/List";
-import Box from "@material-ui/core/Box";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import AddIcon from "@material-ui/icons/Add";
-import { useTranslation } from "react-i18next";
 
-import Modal from "../../components/Modal";
-import YoutubeSearch from "../../components/YoutubeSearch";
-import YoutubeApiItem from "../../types/YoutubeApiItem";
+import RoomPlaylistItem from "../../types/RoomPlaylistItem";
 
 import Styles from "./RoomPage.module.scss";
 
@@ -22,86 +11,46 @@ const YOUTUBE_PLAYER_OPTIONS = {
   },
 };
 
-const VideoContainer: React.FC = () => {
-  const { t } = useTranslation();
+interface Props {
+  item: RoomPlaylistItem;
+  play: boolean;
+  playFrom: number;
+  onPlay: () => void;
+  onPause: () => void;
+  onEnd: () => void;
+}
+
+const VideoContainer: React.FC<Props> = props => {
+  const { item, play, onPlay, onPause, onEnd } = props;
 
   const [youtubePlayer, setYoutubePlayer] = useState();
-  // eslint-disable-next-line no-console
-  console.log(youtubePlayer === true);
-  const [addUrlDialogOpen, setAddUrlDialogOpen] = useState(false);
-
-  const [current, setCurrent] = useState<any>({
-    id: "PJ_zomNMK_s",
-    url: "https://www.youtube.com/watch?v=PJ_zomNMK_s",
-  });
-  const [playlist, setPlaylist] = useState<any[]>([
-    { id: "p2-vkAR1dNU", url: "https://www.youtube.com/watch?v=p2-vkAR1dNU" },
-  ]);
-
-  const onMusicEnd = (event: { target: any }): void => {
-    if (playlist.length > 0) {
-      const next = playlist[0];
-      playlist.splice(0, 1);
-      setPlaylist(playlist);
-      setCurrent(next);
-      event.target.loadVideoById(next.id); // TODO send socket Event
-    }
-  };
 
   const onReady = (event: { target: any }): void => {
     setYoutubePlayer(event.target);
-    event.target.pauseVideo();
+    event.target.playVideo();
   };
 
-  const onVideoClicked = (item: YoutubeApiItem): any => {
-    // eslint-disable-next-line no-console
-    console.log(item); // TODO Send socket event new music
-  };
+  useEffect(() => {
+    if (youtubePlayer) {
+      if (play) {
+        youtubePlayer.playVideo();
+      } else {
+        youtubePlayer.pauseVideo();
+      }
+    }
+  }, [play, youtubePlayer, item.uuid]);
 
   return (
     <div>
       <YouTube
-        videoId={current.id}
+        videoId={item.videoId}
         className={Styles.ytPlayer}
         opts={YOUTUBE_PLAYER_OPTIONS}
-        onEnd={onMusicEnd}
         onReady={onReady}
+        onPlay={onPlay}
+        onPause={onPause}
+        onEnd={onEnd}
       />
-      <div className={Styles.NextLabel}>
-        <Typography variant="h3" component="h3" gutterBottom>
-          {t("test")}
-        </Typography>
-        <Box ml={1}>
-          <Fab
-            color="primary"
-            aria-label="add"
-            onClick={() => setAddUrlDialogOpen(true)}
-          >
-            <AddIcon />
-          </Fab>
-        </Box>
-      </div>
-      <List>
-        {playlist.map((musicItem, idx) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <div key={`${musicItem.url}${idx}`}>
-            <ListItem>
-              <ListItemText
-                primary={musicItem.url}
-                secondary="Added by Guillaume"
-              />
-            </ListItem>
-            <Divider />
-          </div>
-        ))}
-      </List>
-      <Modal
-        title="Add Music"
-        open={addUrlDialogOpen}
-        setOpen={setAddUrlDialogOpen}
-      >
-        <YoutubeSearch onSelect={onVideoClicked} />
-      </Modal>
     </div>
   );
 };
