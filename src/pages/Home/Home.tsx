@@ -3,12 +3,13 @@ import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import { useHistory, Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { connect } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 
 import { useApi } from "../../services/api";
-import TypeOfConnect from "../../store/utils/TypeOfConnect";
 import { StateStore } from "../../store";
+import TypeOfConnect from "../../store/utils/TypeOfConnect";
 
 import Styles from "./Home.module.scss";
 
@@ -20,8 +21,10 @@ type Props = TypeOfConnect<typeof withRedux>;
 
 const Home: React.FC<Props> = props => {
   const { user } = props;
+
   const api = useApi();
   const history = useHistory();
+  const { t } = useTranslation();
 
   const onCreateRoomClick = async (): Promise<void> => {
     try {
@@ -42,16 +45,16 @@ const Home: React.FC<Props> = props => {
       <h1>Melosync</h1>
 
       <Box marginTop={1} marginBottom={7}>
-        <Typography>Sync music with anybody</Typography>
+        <Typography>{t("homeCatchPhrase")}</Typography>
       </Box>
 
       {user.loggedIn ? (
         <Button color="primary" onClick={onCreateRoomClick}>
-          Create Room
+          {t("createRoom")}
         </Button>
       ) : (
         <Link to="/login">
-          <Button color="primary">Login</Button>
+          <Button color="primary">{t("loginButton")}</Button>
         </Link>
       )}
     </Container>

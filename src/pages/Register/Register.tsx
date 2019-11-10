@@ -7,6 +7,7 @@ import TextField from "@material-ui/core/TextField";
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { userActions } from "../../store/UserStore";
 import { useApi } from "../../services/api";
@@ -31,6 +32,7 @@ const Register: React.FC<Props> = props => {
 
   const api = useApi();
   const history = useHistory();
+  const { t } = useTranslation();
 
   // Form
   const [name, setName] = useState("");
@@ -79,7 +81,7 @@ const Register: React.FC<Props> = props => {
     <Container className={Styles.RegisterContainer}>
       <Card>
         <CardContent>
-          <h1 className={Styles.centeredText}>Register</h1>
+          <h1 className={Styles.centeredText}>{t("registerTitle")}</h1>
           <form onSubmit={onFormSubmit}>
             <TextField
               label="Name"
@@ -115,7 +117,7 @@ const Register: React.FC<Props> = props => {
                 type="submit"
                 disabled={loading}
               >
-                Register
+                {t("register")}
               </Button>
               {loading && (
                 <CircularProgress

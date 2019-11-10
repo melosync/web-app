@@ -1,4 +1,11 @@
 {
+  "createRoom": "Créer un salle",
+  "homeCatchPhrase": "Synchroniser votre musique avec vos amis",
+  "loginButton": "Connexion",
+  "loginTitle": "Connexion",
+  "orRegister": "Ou s'inscrire",
   "playlistAddItem": "Ajouter",
-  "playlistNextItem": "Suivant"
+  "playlistNextItem": "Suivant",
+  "register": "Inscription",
+  "registerTitle": "Inscription"
 }

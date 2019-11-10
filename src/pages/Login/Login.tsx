@@ -6,6 +6,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Container from "@material-ui/core/Container";
 import TextField from "@material-ui/core/TextField";
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 
@@ -32,6 +33,7 @@ const Login: React.FC<Props> = props => {
 
   const api = useApi();
   const history = useHistory();
+  const { t } = useTranslation();
 
   // Form
   const [email, setEmail] = useState("");
@@ -72,7 +74,7 @@ const Login: React.FC<Props> = props => {
     <Container className={Styles.LoginContainer}>
       <Card>
         <CardContent>
-          <h1 className={Styles.centeredText}>Login</h1>
+          <h1 className={Styles.centeredText}>{t("loginTitle")}</h1>
           <form onSubmit={onFormSubmit}>
             <TextField
               label="Email"
@@ -99,7 +101,7 @@ const Login: React.FC<Props> = props => {
                 type="submit"
                 disabled={loading}
               >
-                Login
+                {t("loginButton")}
               </Button>
               {loading && (
                 <CircularProgress
@@ -109,7 +111,9 @@ const Login: React.FC<Props> = props => {
               )}
               <Box width={1}>
                 <Link to="/register">
-                  <Button className={Styles.registerButton}>Or register</Button>
+                  <Button className={Styles.registerButton}>
+                    {t("orRegister")}
+                  </Button>
                 </Link>
               </Box>
             </div>

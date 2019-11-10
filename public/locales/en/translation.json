@@ -1,4 +1,11 @@
 {
+  "createRoom": "Create Room",
+  "homeCatchPhrase": "Sync your songs with your friends",
+  "loginButton": "Login",
+  "loginTitle": "Login",
+  "orRegister": "Or register",
   "playlistAddItem": "Add song",
-  "playlistNextItem": "Next song"
+  "playlistNextItem": "Next song",
+  "register": "Register",
+  "registerTitle": "Register"
 }
