@@ -1,0 +1,20 @@
+.userItemContainer {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.userItem {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  max-width: 140px;
+  margin: 15px;
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 640px) {
+  .userItemContainer {
+    display: none;
+  }
+}
