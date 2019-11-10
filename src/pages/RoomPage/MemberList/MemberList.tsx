@@ -1,8 +1,9 @@
 import React from "react";
-import { RoomMemberMeta } from "../types";
+
+import RoomMember from "../../../types/RoomMember";
 
 interface Props {
-  members: RoomMemberMeta[];
+  members: RoomMember[];
 }
 
 const MemberList: React.FC<Props> = props => {
@@ -12,9 +13,16 @@ const MemberList: React.FC<Props> = props => {
     <div>
       {members.map(m => (
         <div style={{ border: "solid 1px white" }} key={m.id}>
-          <p>Id: {m.id}</p>
-          <p>Name: {m.name}</p>
-          <p>Status: {m.isConnected ? "connected" : "offline"}</p>
+          <p>
+            Id:
+            {m.id}
+            <br />
+            Name:
+            {m.name}
+            <br />
+            Status:
+            {m.isConnected ? "connected" : "offline"}
+          </p>
         </div>
       ))}
     </div>

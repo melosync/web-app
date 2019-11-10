@@ -13,7 +13,6 @@ import RoomPlaylistItem from "../../types/RoomPlaylistItem";
 
 import MemberList from "./MemberList";
 import VideoContainer from "./VideoContainer";
-
 import Styles from "./RoomPage.module.scss";
 
 const withRedux = connect((state: StateStore) => {
@@ -121,22 +120,22 @@ const RoomPage: React.FC<Props> = props => {
       });
 
       socket.on("music_add", (music: RoomPlaylistItem) => {
-        console.log("SOCKET: music_add: ", music);
+        console.info("SOCKET: music_add: ", music);
         // TODO: Add the music to the list (or in "current" if the playlist is empty)
       });
 
       socket.on("music_start", () => {
-        console.log("SOCKET: music_start");
+        console.info("SOCKET: music_start");
         // TODO: Start the player
       });
 
       socket.on("music_pause", () => {
-        console.log("SOCKET: music_pause");
+        console.info("SOCKET: music_pause");
         // TODO: pause the player
       });
 
       socket.on("music_next", (musicUuid: string) => {
-        console.log("SOCKET: music_next: ", musicUuid);
+        console.info("SOCKET: music_next: ", musicUuid);
         // TODO: play next music
       });
 
