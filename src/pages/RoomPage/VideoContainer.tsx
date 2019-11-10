@@ -10,7 +10,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import AddIcon from "@material-ui/icons/Add";
 import { useTranslation } from "react-i18next";
 
-import AddUrlDialog from "./AddUrlDialog";
+import Modal from "../../components/Modal";
+import YoutubeSearch from "../../components/YoutubeSearch";
+import YoutubeApiItem from "../../types/YoutubeApiItem";
+
 import Styles from "./RoomPage.module.scss";
 
 const YOUTUBE_PLAYER_OPTIONS = {
@@ -23,6 +26,8 @@ const VideoContainer: React.FC = () => {
   const { t } = useTranslation();
 
   const [youtubePlayer, setYoutubePlayer] = useState();
+  // eslint-disable-next-line no-console
+  console.log(youtubePlayer === true);
   const [addUrlDialogOpen, setAddUrlDialogOpen] = useState(false);
 
   const [current, setCurrent] = useState<any>({
@@ -46,6 +51,11 @@ const VideoContainer: React.FC = () => {
   const onReady = (event: { target: any }): void => {
     setYoutubePlayer(event.target);
     event.target.pauseVideo();
+  };
+
+  const onVideoClicked = (item: YoutubeApiItem): any => {
+    // eslint-disable-next-line no-console
+    console.log(item); // TODO Send socket event new music
   };
 
   return (
@@ -85,13 +95,13 @@ const VideoContainer: React.FC = () => {
           </div>
         ))}
       </List>
-      <AddUrlDialog
+      <Modal
+        title="Add Music"
         open={addUrlDialogOpen}
         setOpen={setAddUrlDialogOpen}
-        youtubePlayer={youtubePlayer}
-        playlist={playlist}
-        setPlaylist={setPlaylist}
-      />
+      >
+        <YoutubeSearch onSelect={onVideoClicked} />
+      </Modal>
     </div>
   );
 };
