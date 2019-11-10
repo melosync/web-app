@@ -253,36 +253,38 @@ const RoomPage: React.FC<Props> = props => {
   };
 
   return (
-    <Container className={Styles.RoomContainer}>
+    <div style={{ display: "flex" }}>
       <MemberList members={(room && room.members) || []} />
-      {room && currentItem && (
-        <VideoContainer
-          item={currentItem}
-          play={room.playlist.isPlaying}
-          playFrom={musicOffset(
-            room.playlist.playingSince,
-            room.playlist.musicOffset
-          )}
-          onPlay={onPlay}
-          onPause={onPause}
-          onEnd={onEnd}
-        />
-      )}
+      <Container className={Styles.RoomContainer}>
+        {room && currentItem && (
+          <VideoContainer
+            item={currentItem}
+            play={room.playlist.isPlaying}
+            playFrom={musicOffset(
+              room.playlist.playingSince,
+              room.playlist.musicOffset
+            )}
+            onPlay={onPlay}
+            onPause={onPause}
+            onEnd={onEnd}
+          />
+        )}
 
-      {uuid && room && (
-        <ButtonBox
-          onNext={nextMusic(api, room)}
-          onSearchSelected={onMusicSelected(api, uuid)}
-        />
-      )}
+        {uuid && room && (
+          <ButtonBox
+            onNext={nextMusic(api, room)}
+            onSearchSelected={onMusicSelected(api, uuid)}
+          />
+        )}
 
-      {room && (
-        <PlaylistQueue
-          items={nextItems || []}
-          userFromId={userFromId(room.members)}
-        />
-      )}
-    </Container>
+        {room && (
+          <PlaylistQueue
+            items={nextItems || []}
+            userFromId={userFromId(room.members)}
+          />
+        )}
+      </Container>
+    </div>
   );
 };
 
