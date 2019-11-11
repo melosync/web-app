@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/melosync/web-app.svg?branch=master)](https://travis-ci.org/melosync/web-app)
 
+Website accessible here: https://melosync.herokuapp.com/
+
 ## Table of content
 
 <!-- The section between the `toc` tags is automatically generated with `npm run readme:update` -->
@@ -22,7 +24,7 @@
 
 ### Prerequisites
 
-- `Node` version 11 with `yarn`
+- `Node` version 11
 - `Docker`
 
 ### Up and running
