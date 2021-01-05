@@ -40,7 +40,7 @@
     "@types/react-youtube": "^7.6.2",
     "@types/socket.io-client": "^1.4.32",
     "acorn-jsx": "^4.1.1",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "i18next": "^19.0.0",
     "i18next-browser-languagedetector": "^4.0.1",
     "i18next-xhr-backend": "^3.2.2",
